@@ -2,25 +2,33 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/", (req, res) => {
+    //쿼리스트링
     let page = req.query.page;
     let search = req.query.search;
+
+    //세션
+    let email = req.session.email;
+
+    //쿠키 읽기
+    console.log("cookies : "+req.cookies.popupyn);
+
+    //쿠키 저장
+    res.cookie("email", email), {
+        expires : new Date(Date.now() + 15000)
+    }
 
     page = page == null ? 1 : page;
     search = search == null ? "" : search;
 
-    const data = req.query;
-    console.log(data);
-    res.send(`Hello Get Users! page : ${page}, search : ${search}`);
+    res.send(`Hello Get Users! page : ${email}`);
 });
 
 router.get("/:username", (req, res) => {
     const username = req.params.username;
-    console.log(username);
     res.send(`Hello Get ${username} Users!`);
 });
 
 router.post("/", (req, res) => {
-    console.log(req.body);
     const username = req.body.username;
     const addr = req.body.addr;
 
