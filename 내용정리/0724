@@ -1,0 +1,14 @@
+##라우팅
+ - 클라이언트 요청에 응답하는 방법을 결정
+ - method 구분해서 응답
+ - app.메서드('패스', 핸들러(req, res){} )
+ - app.route() : 라우터 메소드를 한곳에서 작성
+ - express.Router() : 파일을 분리해서 구현
+
+app.get("/users", (req, res) => {
+  res.send("hello user!!");
+});
+
+app.route("/users")
+  .get((req, res) => {  res.send("user get");  })
+  .post((req, res) => { res.send("user post");  })
