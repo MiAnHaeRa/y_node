@@ -207,6 +207,7 @@
                         .then(result => {
                             if (result.data.affectedRows == 1) {
                                 alert("삭제가 완료되었습니다.");
+                                resetForm();
                                 customerList();
                             } else {
                                 alert("삭제 할 데이터가 존재하지 않거나 오류가 발생하였습니다.");
