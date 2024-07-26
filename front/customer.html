@@ -79,7 +79,7 @@
             </div>
             <div class="col-lg-3 col-md-12">
                 <form>
-                    <input type="hidden" id="id" value="">
+                    <input type="text" id="id" value="" readonly>
                     <div class="d-flex flex-row-reverse col-12">
                         <button type="reset" class="btn btn-secondary">초기화</button>
                         <button id="btnAddCustomer" type="button" class="btn btn-success">등록</button>
@@ -101,13 +101,14 @@
                         <label for="address" class="form-label">주소</label>
                         <input type="text" class="form-control" id="address" placeholder="대구광역시 중구">
                     </div>
+                </form>
             </div>
         </div>
     </div>
 
     <script src="./common.js"></script>
     <script>
-        let url = "http://localhost:3000/customer";
+        let url = "http://localhost:3000/customer/";
 
         //시작시 호출
         customerList();
@@ -155,6 +156,7 @@
                 axios.post(url, datas)
                     .then(result => {
                         let data = result.data;
+                        console.log(data)
 
                         if (data.affectedRows == 1) {
                             alert("등록이 완료되었습니다!");
@@ -166,7 +168,7 @@
                         }
                     });
             } else {                    //수정
-                const updateUrl = url + "/" + $("#id").val();
+                const updateUrl = url + $("#id").val();
                 axios.put(updateUrl, datas)
                     .then(result => {
                         let data = result.data;
@@ -187,7 +189,7 @@
         //선택조회
         $("#customerList").on("click", "tr", function (e) {
             let selectId = $(e.currentTarget).children().first().text();
-            const selectUrl = url + "/" + selectId;
+            const selectUrl = url + selectId;
 
             axios.get(selectUrl)
                 .then(result => {
@@ -198,25 +200,27 @@
 
         //삭제버튼
         $("#btnDelCustomer").on("click", function () {
-            if ($("#id").val() == "") {
-                alert("선택 후 삭제해 주십시오.");
-            } else {
-                if (confirm("ㄹㅇ 삭제할거임??")) {
-                    const delUrl = url + "/" + $("#id").val();
-                    axios.delete(delUrl)
-                        .then(result => {
-                            if (result.data.affectedRows == 1) {
-                                alert("삭제가 완료되었습니다.");
-                                resetForm();
-                                customerList();
-                            } else {
-                                alert("삭제 할 데이터가 존재하지 않거나 오류가 발생하였습니다.");
-                            }
-                        });
-                } else {
-                    alert("삭제가 취소되었습니다.");
-                }
+            const delId = $("#id").val();
+            if (!delId) {
+                return alert("선택 후 삭제해 주십시오.");
             }
+
+            if (!confirm("ㄹㅇ 삭제할거임??")) {
+                return alert("삭제가 취소되었습니다.");
+            }
+
+            const delUrl = url + delId;
+            axios.delete(delUrl)
+                .then(result => {
+                    if (result.data.affectedRows == 1) {
+                        alert("삭제가 완료되었습니다.");
+                        resetForm();
+                        customerList();
+                    } else {
+                        alert("삭제 할 데이터가 존재하지 않거나 오류가 발생하였습니다.");
+                    }
+                });
+
         });
     </script>
 </body>
