@@ -1,0 +1,24 @@
+리액트로 사고하기( https://ko.react.dev/learn/thinking-in-react ) - 과제
+tic-tac-toe 게임 만들기 ( https://ko.react.dev/learn/tutorial-tic-tac-toe ) - 과제
+
+----------------------------------------------------------------------------------------------------------
+
+
+생성
+    npx create-react-app 프로젝트명
+    cd 프로젝트명(폴더명)
+    npm start
+
+수정
+    index.js            <-- app.js
+    index.html
+
+배포
+    npm build
+    build/
+        index.html      <-- SPA(Single Page Application)
+        js/             <-- 웹팩
+        css/
+
+    운영서버에 옮기기
+    serve -s build      <-- 비교 (== 톰캣서버 시작)
