@@ -1,4 +1,5 @@
 import './Homework.css';
+import {useState} from 'react';
 
 const datas = [
     { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
@@ -9,22 +10,30 @@ const datas = [
     { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
 ]
 
-function SearchBar() {
+function SearchBar({ filterText, inStockOnly, onFilterTextChange, onInStockOnly }) {
     return (
         <form>
-            <input type="text" placeholder="Search..." />
+            <input type="text" value={filterText} placeholder="Search..." onChange={e => onFilterTextChange(e.target.value)} />
             <label>
-                <input type="checkbox" /> Only show product in stock
+                <input type="checkbox" checked={inStockOnly} onChange={e => onInStockOnly(e.target.checked)} /> Only show product in stock
             </label>
         </form>
     );
 };
 
-function ProductTable({ products }) {
+function ProductTable({ products, filterText, inStockOnly }) {
     let nowCategory = "";
     let list = [];
 
     products.forEach(product => {
+        if(product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
+            return;
+        }
+
+        if(inStockOnly && !product.stocked) {
+            return;
+        }
+
         if (nowCategory != product.category) {
             nowCategory = product.category;
             list.push(<CategoryRow category={nowCategory} />)
@@ -70,10 +79,13 @@ function ProductRow({ product }) {
 };
 
 function App() {
+    let [filterText, setFilterText] = useState('');
+    let [inStockOnly, setInStockOnly] = useState(false);
+
     return (
         <>
-            <SearchBar />
-            <ProductTable products={datas} />
+            <SearchBar filterText={filterText} inStockOnly={inStockOnly} onFilterTextChange={setFilterText} onInStockOnly={setInStockOnly} />
+            <ProductTable products={datas} filterText={filterText} inStockOnly={inStockOnly} />
         </>
     );
 }
