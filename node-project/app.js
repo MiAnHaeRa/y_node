@@ -2,14 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const session = require("express-session");
-const fileStore = require("session-file-store")(session); 
+const fileStore = require("session-file-store")(session);
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
-const upload = multer({dest : "c:/Temp/"});
+const upload = multer({ dest: "c:/Temp/" });
 
 const app = express();
 
-const port = 3000;
+const port = 80;
 
 //라우터
 const userRouter = require("./routes/users.js");
@@ -20,7 +20,7 @@ const customerRouter = require("./routes/customer.js");
 app.use(cookieParser());
 app.use(cors());
 app.use(express.static("public"));                  //정적 파일위치 지정
-app.use(express.urlencoded({extended : false}));    //body-parse를 위함
+app.use(express.urlencoded({ extended: false }));    //body-parse를 위함
 app.use(express.json());                            //json패치
 // app.use(morgan("combined"));                            //로그 확인
 app.use(morgan("dev"));                            //로그 확인
@@ -37,7 +37,7 @@ app.use(
         },
         //store: new fileStore(),
     })
-); 
+);
 
 //주소
 app.get("/", (req, res) => {
