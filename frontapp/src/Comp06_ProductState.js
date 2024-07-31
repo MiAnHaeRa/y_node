@@ -1,4 +1,4 @@
-import './Homework.css';
+import './ProductState.css';
 import { useState } from 'react';
 
 const datas = [
@@ -79,6 +79,7 @@ function ProductRow({ product }) {
     );
 };
 
+//최종 출력
 function App() {
     let [filterText, setFilterText] = useState('');
     let [inStockOnly, setInStockOnly] = useState(false);

@@ -16,13 +16,13 @@ const userRouter = require("./routes/users.js");
 const productRouter = require("./routes/products.js");
 const loginRouter = require("./routes/login.js");
 const customerRouter = require("./routes/customer.js");
+const boardRouter = require("./routes/board.js");
 
 app.use(cookieParser());
 app.use(cors());
 app.use(express.static("public"));                  //정적 파일위치 지정
 app.use(express.urlencoded({ extended: false }));    //body-parse를 위함
 app.use(express.json());                            //json패치
-// app.use(morgan("combined"));                            //로그 확인
 app.use(morgan("dev"));                            //로그 확인
 
 app.use(
@@ -48,6 +48,7 @@ app.use("/", loginRouter);
 app.use("/member", userRouter);
 app.use("/product", productRouter);
 app.use("/customer", customerRouter);
+app.use("/board", boardRouter);
 
 app.post("/upload", upload.single("profile"), (req, res) => {
     console.log(req.file);

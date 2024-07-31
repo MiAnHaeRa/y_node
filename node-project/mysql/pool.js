@@ -2,15 +2,16 @@
 const mysql = require("mysql2");
 const customersql = require("./customer_sql");
 const productsql = require("./product_sql");
-const sql = {...customersql, ...productsql};
+const boardsql = require("./board");
+const sql = { ...customersql, ...productsql, ...boardsql };
 
 //mysql 접속 정보
 const connInfo = {
-    host : "127.0.0.1",
-    port : "3306",
-    user : "hr",
-    password : "hr",
-    database : "shop",
+    host: "127.0.0.1",
+    port: "3306",
+    user: "hr",
+    password: "hr",
+    database: "shop",
     connectionLimit: 10,
 };
 
@@ -20,7 +21,7 @@ let pool = mysql.createPool(connInfo);
 function query(key, data) {
     return new Promise((resolve, rejact) => {
         pool.query(sql[key], data, (err, results, feilds) => {
-            if(err) {
+            if (err) {
                 rejact(err);
             } else {
                 resolve(results);
@@ -31,4 +32,4 @@ function query(key, data) {
 
 
 
-module.exports = {pool, query};
+module.exports = { pool, query };
