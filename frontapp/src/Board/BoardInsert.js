@@ -11,7 +11,7 @@ export default function BoardInsert() {
     async function handlerSave() {
         if (form.title == (null || "") || form.content == (null || "") || form.writer == (null || "")) {
             alert("제목, 작성자, 내용을 모두 입력해 주세요");
-            console.log(form)
+            console.log(form);
             return;
         }
 
@@ -20,7 +20,7 @@ export default function BoardInsert() {
         let result = await axios.post(url, form);
         if (result.data.affectedRows == 1) {
             //목록으로 이동
-            navigate("/list");
+            navigate("/boardlist");
         } else {
             alert("등록할 데이터가 없거나 에러가 발생하였습니다 다시 한번시도해주세요.");
             setFocus.current.focus();

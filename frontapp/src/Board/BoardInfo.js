@@ -17,7 +17,7 @@ export default function BoardInfo() {
     async function handleDelete(e) {
         if (window.confirm("정말로 삭제하시겠습니까?")) {
             await axios.delete(url + seq);
-            navigate("/list");
+            navigate("/boardlist");
         }
     }
 

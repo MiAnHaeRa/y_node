@@ -11,7 +11,7 @@ import { BrowserRouter } from 'react-router-dom';
 // import App from './CustomerComponent';
 //import App from './Comp08_Form_Ref';
 //import App from './Comp09_Router';
-import App from './BoardComponect';
+import App from './Board_CustomerComponect';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
