@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink, useParams } from 'react-router-dom';
+import { Routes, Route, NavLink, useParams, useRoutes } from 'react-router-dom';
 
 function Home() {
     return (
@@ -23,9 +23,9 @@ function Topics() {
             <ul>
                 {list}
             </ul>
-            <Routes>
+            {/* <Routes>
                 <Route path="/:topic_id" element={<Topic />}></Route>
-            </Routes>
+            </Routes> */}
         </div>
     );
 }
@@ -49,20 +49,27 @@ function Contact() {
 }
 
 function App() {
+    const ele = useRoutes([
+        { path: "RHome", element: <Home /> },
+        { path: "topics/*", element: <Topics />, children: [{ path: ":topic_id", element: <Topic /> }] },
+        { path: "contact", element: <Contact /> },
+        { path: "*", element: "Not Found" },
+    ])
     return (
         <div className="App">
             <h1>Hello react router DOM</h1>
             <ul>
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/topics">Topics</NavLink></li>
-                <li><NavLink to="/contact">Contact</NavLink></li>
+                <li><NavLink to="RHome">Home</NavLink></li>
+                <li><NavLink to="topics">Topics</NavLink></li>
+                <li><NavLink to="contact">Contact</NavLink></li>
             </ul>
-            <Routes>
+            {/* <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/topics/*" element={<Topics />}></Route>
                 <Route path="/contact" element={<Contact />}></Route>
                 <Route path="/*" element={'Not Found'}></Route>
-            </Routes>
+            </Routes> */}
+            {ele}
         </div>
     );
 }

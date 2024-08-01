@@ -29,7 +29,7 @@ export default function CustomerUpdate() {
          .then(result => {
             if (result.data.affectedRows == 1) {
                alert("업데이트에 성공하였습니다.")
-               navigate("/customerList")
+               navigate("/bc_Component/customerList")
             }
          })
    }

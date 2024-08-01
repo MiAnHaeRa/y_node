@@ -14,5 +14,19 @@ code {
 
 .active {
   color : rgb(167, 253, 167);
-  background-color: #555;
+}
+
+.root div {
+  border: 10px solid gray;
+  margin: 10px;
+  padding: 10px;
+}
+
+#container, #container > div div {
+  border: 5px solid red;
+  margin: 10px;
+}
+#grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

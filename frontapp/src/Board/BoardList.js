@@ -10,7 +10,7 @@ function BoardRow({ boards }) {
                 return (
                     <tr key={board.seq}>
                         <td>{board.seq}</td>
-                        <td><NavLink to={"/info/" + board.seq}>{board.title}</NavLink></td>
+                        <td><NavLink to={"/bc_Component/info/" + board.seq}>{board.title}</NavLink></td>
                         <td>{board.wet}</td>
                         <td>{board.writer}</td>
                     </tr>
@@ -40,7 +40,6 @@ export default function BoardList() {
 
     useEffect(() => {
         getBoards();
-        console.log([...Array(lastPage)]);
     }, [page])
 
     return (
@@ -50,7 +49,7 @@ export default function BoardList() {
                     <thead>
                         <tr>
                             <td colSpan="4">
-                                <NavLink to="/boardInsert"><Button type="button" variant="primary">글쓰기</Button></NavLink>
+                                <NavLink to="/bc_Component/boardInsert"><Button type="button" variant="primary">글쓰기</Button></NavLink>
                             </td>
                         </tr>
                         <tr>
@@ -65,7 +64,7 @@ export default function BoardList() {
                     </tbody>
                 </Table>
             </Row>
-            {[...Array(lastPage)].map((p, idx) => (<Link to={"/list?page=" + (idx + 1)}>{idx + 1}</Link>))}
+            {[...Array(lastPage)].map((p, idx) => (<Link to={"/bc_Component/boardlist?page=" + (idx + 1)}><Button type="button">{idx + 1}</Button> </Link>))}
         </>
     )
 }

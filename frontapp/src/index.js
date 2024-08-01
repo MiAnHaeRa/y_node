@@ -10,8 +10,12 @@ import { BrowserRouter } from 'react-router-dom';
 // import App from './Comp07_EffectComponent';
 // import App from './CustomerComponent';
 //import App from './Comp08_Form_Ref';
-//import App from './Comp09_Router';
-import App from './Board_CustomerComponect';
+// import App from './Comp09_Router';
+// import App from './Board_CustomerComponect';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './LayoutComponent';
+// import App from './Comp10_Styled';
+// import App from './Comp11_Context';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

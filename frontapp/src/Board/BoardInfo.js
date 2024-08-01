@@ -17,7 +17,7 @@ export default function BoardInfo() {
     async function handleDelete(e) {
         if (window.confirm("정말로 삭제하시겠습니까?")) {
             await axios.delete(url + seq);
-            navigate("/boardlist");
+            navigate("/bc_Component/boardlist");
         }
     }
 
@@ -42,7 +42,7 @@ export default function BoardInfo() {
                         <th>내용</th><td colSpan={3}>{board.content}</td>
                     </tr>
                 </tbody>
-                <Link to={"/update/" + board.seq}><Button variant='success'>수정</Button></Link>
+                <Link to={"/bc_Component/update/" + board.seq}><Button variant='success'>수정</Button></Link>
                 <Button type='button' variant='danger' onClick={handleDelete}>삭제</Button>
             </Table>
         </Row>
