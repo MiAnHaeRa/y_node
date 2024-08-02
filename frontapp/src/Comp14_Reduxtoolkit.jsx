@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {countSlice, store } from './store'
 import { legacy_createStore as createStore } from "redux";
+import { useState } from "react";
 
 /*
 //기존 redux
@@ -40,15 +41,14 @@ function Counter() {
 }
 
 function MyPage() {
+    const [ username ,setUsername] = useState(0)
     const dispatch = useDispatch();
     const loginInfo = useSelector(state => state.login);
     return(
         <>
             <div>
-                {
-                    //<input type="text" onChange={(e) =>{dispatch({type : "loginSlice/setUsername", username : e.target.value})}} />
-                }
-                <input type="text"/> <button type="button" onClick={(e) => {console.log(e)}}>수정</button>
+                <input type="text" onChange={(e) =>{dispatch({type : "loginSlice/setUsername", username : e.target.value})}} />
+                <input type="text" onChange={(e) =>{setUsername(e.target.value)}}/> <button type="button" onClick={() => {dispatch({type : "loginSlice/setUsername", username })}}>수정</button>
                 <h2>이름 : {loginInfo.username}</h2>
                 <h2>이메일 : {loginInfo.email}</h2>
             </div>

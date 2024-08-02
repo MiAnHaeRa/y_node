@@ -1,0 +1,26 @@
+개발환경 구축 : node + react
+
+
+exam(프로젝트명)
+    backapp(node)   =>  express.js 프레임워크 사용 --> vite, express-generator 등
+                        -미들웨어, 라우팅, mysql
+                        - 파일구성 : 
+                                    package.json,
+                                    app.js : 미들웨어 (cors, express.json, express.urlencoded,
+                                                        cookie-parser, session, multer, morgan...)
+                                    mysql 폴더 : customer.js, pool.js
+                                    route 폴더 : customer.js
+    
+
+    frontapp(react) =>  create-react-app 툴체인 사용
+                        - 컴포넌트 : JSX -> <h1>{name}</h2>
+                        - HOOK : useState, useEffect, useNavigate, useMemo...
+                        - 라우팅
+                        - 파일구성 : 
+                                    App.js => 레이아웃, <Routes><Route>
+                                    index.js
+                                    index.html => bootstrap.css cdm link
+                        
+    npx create-react-app (프로젝트명)
+    cd 프로젝트명(폴더명)
+    npm start
